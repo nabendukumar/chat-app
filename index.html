@@ -2,125 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Firebase Chat App</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Chat App</title>
 </head>
 <body>
-  <h1>Firebase Chat App</h1>
 
-  <!-- Auth Forms -->
-  <div id="auth-forms">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <button id="signup-btn">Sign Up</button>
-    <button id="login-btn">Login</button>
-  </div>
+<h2>Chat App</h2>
+<input id="email" placeholder="email">
+<input id="password" placeholder="password">
+<button id="login">Login</button>
 
-  <!-- User Status -->
-  <div id="user-status"></div>
+<br><br>
 
-  <!-- Chat Box -->
-  <div id="chat-container" style="display:none;">
-    <div id="chat-box"></div>
-    <input type="text" id="message-input" placeholder="Type message...">
-    <button id="send-btn">Send</button>
-    <button id="logout-btn">Logout</button>
-  </div>
+<input id="msg" placeholder="message">
+<button id="send">Send</button>
 
-  <!-- Firebase SDKs -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+<script type="module" src="app.js"></script>
 
-    // Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyAaAsXl3I262r_da3DLTHeXRAOqgrzyiVQ",
-      authDomain: "chat-app-e2cc7.firebaseapp.com",
-      projectId: "chat-app-e2cc7",
-      storageBucket: "chat-app-e2cc7.appspot.com",
-      messagingSenderId: "68675656128",
-      appId: "1:68675656128:web:1ea6a01c25be2c53aa1025"
-    };
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/firebase-messaging-sw.js')
+    .then(() => console.log("SW registered"))
+    .catch(err => console.log(err));
+}
+</script>
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
-
-    // DOM Elements
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const signupBtn = document.getElementById('signup-btn');
-    const loginBtn = document.getElementById('login-btn');
-    const logoutBtn = document.getElementById('logout-btn');
-    const userStatus = document.getElementById('user-status');
-    const chatContainer = document.getElementById('chat-container');
-    const chatBox = document.getElementById('chat-box');
-    const messageInput = document.getElementById('message-input');
-    const sendBtn = document.getElementById('send-btn');
-
-    // Signup
-    signupBtn.addEventListener('click', () => {
-      const email = emailInput.value;
-      const password = passwordInput.value;
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(() => alert("Signup successful!"))
-        .catch(err => alert(err.message));
-    });
-
-    // Login
-    loginBtn.addEventListener('click', () => {
-      const email = emailInput.value;
-      const password = passwordInput.value;
-      signInWithEmailAndPassword(auth, email, password)
-        .catch(err => alert(err.message));
-    });
-
-    // Logout
-    logoutBtn.addEventListener('click', () => {
-      signOut(auth);
-    });
-
-    // Auth state listener
-    onAuthStateChanged(auth, (user) => {
-      if(user) {
-        userStatus.textContent = `Logged in as ${user.email}`;
-        chatContainer.style.display = 'block';
-        document.getElementById('auth-forms').style.display = 'none';
-
-        // Realtime chat listener
-        const q = query(collection(db, 'messages'), orderBy('timestamp'));
-        onSnapshot(q, (snapshot) => {
-          chatBox.innerHTML = '';
-          snapshot.forEach(doc => {
-            const data = doc.data();
-            const div = document.createElement('div');
-            div.textContent = `${data.email}: ${data.text}`;
-            div.className = (data.email === user.email) ? 'message own-message' : 'message';
-            chatBox.appendChild(div);
-            chatBox.scrollTop = chatBox.scrollHeight;
-          });
-        });
-      } else {
-        userStatus.textContent = '';
-        chatContainer.style.display = 'none';
-        document.getElementById('auth-forms').style.display = 'block';
-      }
-    });
-
-    // Send message
-    sendBtn.addEventListener('click', async () => {
-      const text = messageInput.value;
-      if(text.trim() === '') return;
-      await addDoc(collection(db, 'messages'), {
-        text,
-        email: auth.currentUser.email,
-        timestamp: serverTimestamp()
-      });
-      messageInput.value = '';
-    });
-
-  </script>
 </body>
 </html>
