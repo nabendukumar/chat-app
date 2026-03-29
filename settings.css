@@ -1,0 +1,80 @@
+/* ---------------- Global ---------------- */
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: #f0f2f7;
+  color: #333;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ---------------- Settings Container ---------------- */
+#settings-container {
+  max-width: 500px;
+  margin: 80px auto;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  padding: 40px 30px;
+  border-radius: 25px;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+#settings-container h2 {
+  margin-bottom: 25px;
+  color: #00bfa5;
+}
+
+/* Inputs */
+#settings-container input {
+  width: 100%;
+  padding: 16px;
+  margin: 12px 0;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+#settings-container input:focus {
+  border-color: #00bfa5;
+  box-shadow: 0 0 10px rgba(0,191,165,0.3);
+  outline: none;
+}
+
+/* Buttons */
+#settings-container button {
+  padding: 14px 22px;
+  margin: 10px 5px;
+  background: linear-gradient(135deg, #00bfa5, #26a69a);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#back-to-chat {
+  background: #f5f5f5;
+  color: #333;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+#back-to-chat:hover {
+  background: #e0f7f4;
+}
+
+/* Message Box */
+#settings-msg {
+  margin-top: 15px;
+  font-size: 15px;
+  min-height: 18px;
+}

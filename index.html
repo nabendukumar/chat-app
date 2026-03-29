@@ -3,28 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <title>Chat App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Chat App</h2>
-<input id="email" placeholder="email">
-<input id="password" placeholder="password">
-<button id="login">Login</button>
+<!-- ==================== 1️⃣ AUTH ==================== -->
+<div id="auth-forms">
+  <h2 id="auth-title">Login</h2>
 
-<br><br>
+  <!-- USERNAME (Signup Only) -->
+  <input id="username" placeholder="Username" style="display:none;">
 
-<input id="msg" placeholder="message">
-<button id="send">Send</button>
+  <!-- EMAIL & PASSWORD -->
+  <input id="auth-email" placeholder="Email">
+  <input id="auth-password" placeholder="Password" type="password">
+
+  <!-- BUTTON -->
+  <button id="auth-btn">Login</button>
+
+  <!-- TOGGLE -->
+  <p id="toggle-auth" style="cursor:pointer;color:blue;margin-top:10px;">
+    Don't have an account? Sign Up
+  </p>
+
+  <div id="auth-msg" style="margin-top:10px;"></div>
+</div>
+
+<!-- ==================== 2️⃣ MAIN CHAT ==================== -->
+<div id="main-chat-wrapper" style="display:none;">
+
+  <!-- LEFT PANEL / DM LIST -->
+  <div id="dm-list-container">
+  <!-- Search bar -->
+  <input type="text" id="search-user" placeholder="Search users..." 
+         style="padding:10px; margin:10px; border-radius:10px; width:90%; border:1px solid #ccc;">
+
+  <!-- DM list -->
+  <div id="dm-list">
+    <!-- Users will be dynamically added here via JavaScript -->
+  </div>
+</div>
+
+  <!-- RIGHT PANEL / CHAT -->
+  <div id="chat-container">
+
+    <!-- HEADER -->
+    <div id="chat-header">
+      <img id="chat-user-photo" src="https://i.pravatar.cc/100">
+      <div>
+        <div id="chat-username">User</div>
+        <div id="chat-last-seen">Online</div>
+      </div>
+      <!-- SETTINGS BUTTON -->
+      <button id="settings-btn" style="margin-left:auto;padding:6px 10px;border-radius:8px;">⚙️ Settings</button>
+    </div>
+
+    <!-- CHAT BOX -->
+    <div id="chat-box"></div>
+
+    <!-- INPUT BAR -->
+    <div id="message-bar">
+      <input id="message-input" placeholder="Type a message">
+      <button id="send-btn">Send</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ==================== 3️⃣ SETTINGS ==================== -->
+<div id="settings-wrapper" style="display:none; max-width:420px; margin:50px auto;">
+  <h2>Settings</h2>
+
+  <input id="edit-username" placeholder="New Username">
+  <input type="file" id="edit-photo-file" accept="image/*">
+  <input id="edit-email" placeholder="New Email">
+
+  <button id="update-profile-btn">Update Profile</button>
+  <button id="update-email-btn">Update Email</button>
+  <button id="delete-account-btn" style="background:red;">Delete Account</button>
+
+  <div id="settings-msg" style="margin-top:10px;"></div>
+
+  <button id="back-to-chat" style="margin-top:20px;">⬅️ Back to Chat</button>
+</div>
 
 <script type="module" src="app.js"></script>
-
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/firebase-messaging-sw.js')
-    .then(() => console.log("SW registered"))
-    .catch(err => console.log(err));
-}
-</script>
-
+<script type="module" src="setting.js"></script>
 </body>
 </html>

@@ -55,7 +55,7 @@ button:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* ---------------- Main Layout ---------------- */
+/* ---------------- Main Chat Layout ---------------- */
 #main-chat-wrapper {
   display: flex;
   height: 100vh;
@@ -63,7 +63,7 @@ button:hover {
   background: #e5ddd5;
 }
 
-/* ---------------- Left Panel / DM List ---------------- */
+/* Left Panel / DM List */
 #dm-list-container {
   width: 300px;
   background: #fff;
@@ -72,37 +72,6 @@ button:hover {
   flex-direction: column;
   padding: 15px;
   box-shadow: 2px 0 15px rgba(0,0,0,0.03);
-}
-
-#search-bar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-#search-btn {
-  padding: 8px 14px;
-  background: #00bfa5;
-  color: #fff;
-  border-radius: 14px;
-}
-
-#search-input {
-  flex: 1;
-  padding: 10px 14px;
-  border-radius: 14px;
-  border: 1px solid #ccc;
-  display: none;
-}
-
-#search-results {
-  display: none;
-  max-height: 200px;
-  overflow-y: auto;
-  background: #fefefe;
-  border-radius: 14px;
-  border: 1px solid #ccc;
-  margin-bottom: 12px;
 }
 
 .dm-item {
@@ -129,7 +98,7 @@ button:hover {
   object-fit: cover;
 }
 
-/* ---------------- Right Panel / Chat ---------------- */
+/* Right Panel / Chat */
 #chat-container {
   flex: 1;
   display: flex;
@@ -230,6 +199,63 @@ button:hover {
   margin-left: 2px;
 }
 
+/* ---------------- Settings Page ---------------- */
+#settings-container {
+  max-width: 500px;
+  margin: 80px auto;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  padding: 40px 30px;
+  border-radius: 25px;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+#settings-container h2 {
+  margin-bottom: 25px;
+  color: #00bfa5;
+}
+
+#settings-container input {
+  width: 100%;
+  padding: 16px;
+  margin: 12px 0;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+#settings-container input:focus {
+  border-color: #00bfa5;
+  box-shadow: 0 0 10px rgba(0,191,165,0.3);
+  outline: none;
+}
+
+#settings-container button {
+  padding: 14px 22px;
+  margin: 10px 5px;
+  background: linear-gradient(135deg, #00bfa5, #26a69a);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#back-to-chat {
+  background: #f5f5f5;
+  color: #333;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+#back-to-chat:hover {
+  background: #e0f7f4;
+}
+
+#settings-msg {
+  margin-top: 15px;
+  font-size: 15px;
+  min-height: 18px;
+}
+
 /* ---------------- Responsive ---------------- */
 @media (max-width: 768px) {
   #main-chat-wrapper {
@@ -243,5 +269,10 @@ button:hover {
 
   #chat-box {
     height: 400px;
+  }
+
+  #settings-container {
+    margin: 50px 20px;
+    padding: 30px 20px;
   }
 }
